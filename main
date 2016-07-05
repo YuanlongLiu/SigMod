@@ -1,9 +1,9 @@
-library(igraph)
 ##	This function calculates the nodes selection without using seed node
 ##	last modified: 02-11-2015
 ##	connectivity: lambda; interconnectivity: gamma; sparsity: eta
 
 ##	Formula: c'f - lambda*f'Lf + gama*f'Af - eta*f'f = ( c + lambda*d )'f + ( gama + lambda )f'Af - eta*f'f
+library(igraph)
 core <- function(net, lambda, gama, eta) 
 {
 	v_names = V(net)$name
