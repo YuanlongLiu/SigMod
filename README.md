@@ -7,5 +7,4 @@ Results: SigMod is a novel and efficient method integrating GWAS results and gen
 SigMod selects gene module by solving the optimization problem: maxmize: obj(u) = c'u + \lambda *u'*A*u + \eta*|u|, where u is a vector of binary variables to be optimized. u=1 means a gene is selected and u=0 otherwise. c is a vector of gene scores, can be computed from the GWAS results using gene-based methods. 'A' is the adjacence matrix of the  gene network. \lambda and \eta are tuning parameters. The first term c'u of obj(u) encourages high score genes to be selected; the second term  \lambda *u'*A*u  encourages the strong interconnection among selected genes; the third term \eta*|u| limits the number of genes to be selected.
 
 
-More information wil be added soon.
-Contact: yuanlong.liu@inserm.fr
+More detials, contact: yuanlong.liu@inserm.fr
