@@ -1,9 +1,9 @@
 SigMod: an exact and efficient method to identify a strongly interconnected disease-associated module in gene connectome
 ==================================
 
-Motivation: Apart from single marker-based tests classically used in genome-wide association studies (GWAS), network-assisted analysis has become a promising approach to identify the joint effect of multiple genetic factors on disease. To date, most network-assisted methods aim at finding genetic units connected in a background network, whatever their density or strength of connections. This can hamper the findings as sparse connections are non-robust against noise from either the GWAS results or the network resource.
+**Motivation:** Apart from single marker-based tests classically used in genome-wide association studies (GWAS), network-assisted analysis has become a promising approach to identify the joint effect of multiple genetic factors on disease. To date, most network-assisted methods aim at finding genetic units connected in a background network, whatever their density or strength of connections. This can hamper the findings as sparse connections are non-robust against noise from either the GWAS results or the network resource.
 
-Results: We developed SigMod, a novel and efficient method that integrates GWAS results with gene network to identify a strongly interconnected gene module enriched in high association signals. SigMod identifies the gene module by solving the optimization problem: 
+**Results:** We developed SigMod, a novel and efficient method that integrates GWAS results with gene network to identify a strongly interconnected gene module enriched in high association signals. SigMod identifies the gene module by solving the optimization problem: 
 
 * `maxmize: obj(u) = c'u + \lambda u'Au + \eta |u|,`
 
