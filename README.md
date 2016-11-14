@@ -4,7 +4,7 @@ Motivation: Apart from single marker-based tests classically used in genome-wide
 
 Results: We developed SigMod, a novel and efficient method that integrates GWAS results with gene network to identify a strongly interconnected gene module enriched in high association signals. SigMod identifies the gene module by solving the optimization problem: 
 
-`maxmize: obj(u) = c'u + \lambda u'Au + \eta |u|,`
+* `maxmize: obj(u) = c'u + \lambda u'Au + \eta |u|,`
 
 where `u` is a vector of binary variables to be optimized. `u=1` means a gene is selected and `u=0` otherwise. `c` is a vector of gene scores, can be computed from the GWAS results using gene-based methods. `A` is the adjacency matrix of the gene network. `\lambda` and `\eta` are tuning parameters. The meaning of each term in `obj(u)` is:
 
