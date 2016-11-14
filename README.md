@@ -15,5 +15,10 @@ where `u` is a vector of binary variables to be optimized. `u=1` means a gene is
 
 Therefore the first term `c'u` encourages high score genes to be selected; the second term `\lambda u'Au` encourages the strong interconnection among selected genes; the third term `\eta |u|` limits the number of genes to be selected. We showed that the maximization of `obj(u)` can be solved exactly and efficiently through min-cut algorithms. Compared to existing methods, SigMod has several desirable properties: (i) edge weights quantifying evidence of connections between genes are taken into account; (ii) the selection path corresponds to variation of sparsity parameter can be computed rapidly; (iii) the identified gene module is strongly interconnected, hence includes genes of highly functional relevance; and (iv) it is robust against noise from either the GWAS results or the network resource. We applied SigMod to both simulated and real data. It outperforms state-of-the-art network-assisted methods in identifying disease-association genes.
 
-Descriptions and examples of function usage will be added later.
-Contact: yuanlong.liu@inserm.fr
+
+## Usage
+Usage and examples will be added soon
+
+* Author: Yuanlong LIU
+* Affiliation: French National Institute of Health and Medical Research, Unit 946,  Paris, France
+* Mail: yuanlong.liu@inserm.fr
