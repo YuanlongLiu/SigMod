@@ -7,7 +7,7 @@
 	##this function calculates the capacity line
 	capac_info <- function(net, lambda, gama, eta)
 	{
-		st_info = st_sans_seed(net, lambda, gama, eta) 
+		st_info = SigMod_core(net, lambda, gama, eta) 
 		change_points = st_info$change_points
 		
 		cut_info = st_info$st_cut
@@ -28,7 +28,7 @@
 	}	
 
 	##the regularization path
-	reg_path <- function( net, lambda, gama, eta_max, eta_min, capac_infos, selection_diff=1, selection_min=70 )
+	reg_path <- function( net, lambda, gama, eta_max, eta_min, capac_infos, selection_diff=1, selection_min=1 )
 	{	
 		selected = list()
 		selected[[1]] = capac_infos[[1]]$selected
@@ -39,7 +39,7 @@
 		if( max( length(selected[[1]]) , length(selected[[2]]) ) <= selection_min ) return( list( selected[[1]], selected[[2]] ) )
 
 		##divide and conquer
-		cat('search in subinterval::', sample(1:100,1), '\n')
+		cat('search in subinterval::', length(selected[[1]]), '||', length(selected[[2]]), '\n')
 		etas = c( eta_max, eta_min )
 		
 		cut_lines = list()
@@ -56,7 +56,7 @@
 		
 		##error if the intersection is outside
 		non_concave = ( eta_mid > max( etas[1], etas[2] ) ) | ( eta_mid < min( etas[1], etas[2] ) )
-		if( is.na(non_concave) ) { cat('Incorrect slope of capac_line\n'); return(-1) }
+		if( is.na(non_concave) ) { cat('incorrect slope of capac_line\n'); return(-1) }
 		# if( non_concave ) {cat('capac_line neither concave nor convex\n'); return(-1)}
 		if( non_concave ) {cat(eta_min, eta_mid, eta_max); return(-1)}
 		
@@ -64,20 +64,24 @@
 		
 		capac_info_mid = capac_info( net, lambda, gama, eta=eta_mid )
 		
-		net_head = induced.subgraph( net, capac_info_mid$selected )
-		reg_paths_head  = reg_path( net_head, lambda, gama, etas[1], eta_mid, list(capac_infos[[1]], capac_info_mid), selection_diff )
+		# net_head = induced.subgraph( net, capac_info_mid$selected ):: capac_info not updated
+		reg_paths_head  = reg_path( net, lambda, gama, etas[1], eta_mid, list(capac_infos[[1]], capac_info_mid), selection_diff )
 		reg_paths_tail  = reg_path( net, lambda, gama, eta_mid, etas[2], list(capac_info_mid, capac_infos[[2]]), selection_diff )
 	
 		return( c( reg_paths_head, reg_paths_tail ) ) 
 	}
 
-	selection_path <- function( net, lambda, gama, eta_max=1E7, eta_min, selection_diff=1, selection_min=70 )
+	selection_path <- function( net, lambda, gama, eta_max=1E7, eta_min, selection_diff=1, selection_min=1 )
 	{
+		attribute_names = vertex_attr_names(net)
+		for(name in setdiff( attribute_names, c('name', 'weight') )) net = remove.vertex.attribute(net, name)
 		capac_infos = list()
 		capac_infos[[1]] = capac_info(net=net, lambda, gama, eta=eta_max )
 		capac_infos[[2]] = capac_info(net=net, lambda, gama, eta=eta_min )
-		cat('selected max::', length(capac_infos[[2]]$selected), ' | ', '\n')
+		cat('Selection size max::', length(capac_infos[[2]]$selected), ' | ', '\n')
+		cat('\n------------Begin computing reg path------------', eta_max)
 		result = reg_path( net, lambda, gama, eta_max, eta_min, capac_infos, selection_diff, selection_min )
+		cat('\n------------Finishing computing reg path------------\n')
 		result = result[!duplicated(sapply(result,length))]
 		return( result[ order(sapply( result, length )) ] )
 	}
