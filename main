@@ -1,46 +1,53 @@
-##	This function calculates the nodes selection without using seed node
-##	last modified: 02-11-2015
-##	connectivity: lambda; interconnectivity: gamma; sparsity: eta
+	##	This function calculates the nodes selection without using seed node
+	##	last modified: 02-11-2015
+	##	connectivity: lambda; interconnectivity: gamma; sparsity: eta
 
-##	Formula: c'f - lambda*f'Lf + gama*f'Af - eta*f'f = ( c + lambda*d )'f + ( gama + lambda )f'Af - eta*f'f
-library(igraph)
-core <- function(net, lambda, gama, eta) 
-{
-	v_names = V(net)$name
-	if( any(c( 's', 't' ) %in% v_names) ) { cat('Error: vertex names should be different from \'s\', \'t\'. They were used for the additional source and sink node\n'); return(-1); }
-	##nodes should have the 'weight' attribute
-	if( !'weight' %in% vertex_attr_names( net ) ) { cat('Error: Vertices should have a \'weight\' attribute\n'); return(-1); }
-	##edges should have the 'weight' attribute
-	if( !'weight' %in% edge_attr_names( net ) ) { cat('Error: Edges should have a \'weight\' attribute. Edge weight should be set as 1 for unweighted graph\n'); return(-1); }
-	
-	v_weight = V(net)$weight
-	
-	d =  strength( net ) ## L = D - W for weighted graph. Modified 29-05-2015 
-		
-	##generate the augmented graph
+	library(igraph)
+	##	Formula: c'f - lambda*f'Lf + gama*f'Af - eta*f'f
+	SigMod_core <- function(net, lambda, gama, eta) 
 	{
-		net = net + 's' + 't'
-		net <- add.edges(net, as.vector(rbind('s', v_names)))
-		net <- add.edges(net, as.vector(rbind('t', v_names)))
+		v_names = V(net)$name
+		if( any(c( 's', 't' ) %in% v_names) ) { cat('Error: vertex names should be different from \'s\', \'t\'. They were used for constructing the augmented graph\n'); return(-1); }
+		##nodes should have the 'weight' attribute
+		if( !'weight' %in% vertex_attr_names( net ) ) { cat('Error: Vertices should have a \'weight\' attribute\n'); return(-1); }
+		##edges should have the 'weight' attribute
+		if( !'weight' %in% edge_attr_names( net ) ) { cat('Error: Edges should have a \'weight\' attribute. Edge weights can be set as 1 for unweighted graph\n'); return(-1); }
 
-		W = as_adjacency_matrix(net, attr='weight')
-		A = (gama + lambda) * W
-		cf = v_weight + gama*d - eta ##favours nodes with high degree
-		change_points = sort( pmax(v_weight + gama*d, 0),  decreasing=TRUE )
-		change_points = unname(change_points[change_points > 0])
-		# if( eta > max( change_points ) ) { cat('\n Parameter inappropriate. Eta should be in:', range(change_points), '\n'); return(-1) }
-			
-		A['s', v_names] =  cf*(cf >= 0) ##keep edges on 's' side
-		A['t', v_names] = -cf*(cf < 0) ##keep edges on 't' side 
-		A[,'s'] = A['s',]
-		A[,'t'] = A['t',]
-		st_net = graph_from_adjacency_matrix( A, mode="undirected", weighted=TRUE )
+		v_weight = V(net)$weight
+
+		d =  strength( net ) ## L = D - W for weighted graph. Modified 29-05-2015 
+		# d[d > 100] = 100	
+		# print(d)
+
+
+		##generate the augmented graph
+		{
+			net = net + 's' + 't'
+			net <- add.edges(net, as.vector(rbind('s', v_names)))
+			net <- add.edges(net, as.vector(rbind('t', v_names)))
+
+			W = as_adjacency_matrix(net, attr='weight') ##slow
+			A = (lambda + gama) * W
+			cf = v_weight + gama*d - eta ##favours nodes with high degree
+			change_points = sort( pmax(v_weight + gama*d, 0),  decreasing=TRUE )
+			change_points = unname(change_points[change_points > 0])
+			# if( eta > max( change_points ) ) { cat('\n Parameter inappropriate. Eta should be in:', range(change_points), '\n'); return(-1) }
+
+			A['s', v_names] =  cf*(cf >= 0) ##keep edges on 's' side
+			A['t', v_names] = -cf*(cf < 0) ##keep edges on 't' side 
+			A[,'s'] = A['s',]
+			A[,'t'] = A['t',]
+			st_net = graph_from_adjacency_matrix( A, mode="undirected", weighted=TRUE )
+		}
+
+		cat( 'min_cut starts::' )	
+		st_cut = graph.maxflow( st_net, source='s', target='t', capacity=E(st_net)$weight )
+		cat( 'min_cut ends.\n' )	
+		selected = sort( setdiff( V(st_net)[st_cut$partition1]$name, 's' ) )
+
+		##C is the constant in Chole's prove
+		C = -sum( cf*(cf>=0) )
+		st_cut_info = list( st_net = st_net, st_cut=st_cut, selected=selected, change_points=change_points, obj=-(st_cut$value + C) )
+		return( st_cut_info )
 	}
-		
-	st_cut = graph.maxflow( st_net, source='s', target='t', capacity=E(st_net)$weight )
-	selected = sort( setdiff( V(st_net)[st_cut$partition1]$name, 's' ) )
-	
-	st_cut_info = list( st_net = st_net, st_cut=st_cut, selected=selected, change_points=change_points )
-	return( st_cut_info )
-}
 
