@@ -21,4 +21,4 @@ Usage and examples will be added soon
 
 * Author: Yuanlong LIU
 * Affiliation: French National Institute of Health and Medical Research, Unit 946,  Paris, France
-* Mail: yuanlong.liu@inserm.fr
+* Email: yuanlong.liu@inserm.fr
