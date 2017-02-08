@@ -1,5 +1,5 @@
 	##	This function calculates the nodes selection without using seed node
-	##	last modified: 02-11-2015
+	##	last modified: 08-02-2017
 	##	connectivity: lambda; interconnectivity: gamma; sparsity: eta
 
 	library(igraph)
