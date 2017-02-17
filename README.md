@@ -17,11 +17,11 @@ Therefore the first term `c'u` encourages high score genes to be selected; the s
 
 
 ## Usage
-Application examples will be added soon. Feel free to contact: yuanlong.liu@inserm.fr if you meet any problem in your application
+Application examples will be updated. If you are intereseted in the method or meet any problem in your application, feel free to contact: yuanlong.liu@inserm.fr
 
 * Author: Yuanlong LIU
 * Affiliation: 1INSERM (French National Institute of Health and Medical Research), Genetic Variation and Human Diseases Unit, UMR-946, Paris, France
 
 ## Please cite
-Yuanlong Liu, Myriam Brossard, Damian Roqueiro, Patricia Margaritte-Jeannin, Chloé Sarnowski, Emmanuelle Bouzigon, Florence Demenais; SigMod: an exact and efficient method to identify a strongly interconnected disease-associated module in a gene network. Bioinformatics 2017 btx004. doi: 10.1093/bioinformatics/btx004
+* Yuanlong Liu, Myriam Brossard, Damian Roqueiro, Patricia Margaritte-Jeannin, Chloé Sarnowski, Emmanuelle Bouzigon, Florence Demenais; SigMod: an exact and efficient method to identify a strongly interconnected disease-associated module in a gene network. Bioinformatics 2017 btx004. doi: 10.1093/bioinformatics/btx004
 
