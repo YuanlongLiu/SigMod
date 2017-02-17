@@ -3,13 +3,13 @@ SigMod: an exact and efficient method to identify a strongly interconnected dise
 
 **Motivation:** Apart from single marker-based tests classically used in genome-wide association studies (GWAS), network-assisted analysis has become a promising approach to identify the joint effect of multiple genetic factors on disease. To date, most network-assisted methods aim at finding genetic units connected in a background network, whatever their density or strength of connections. This can hamper the findings as sparse connections are non-robust against noise from either the GWAS results or the network resource.
 
-**Results:** We developed SigMod, a novel and efficient method that integrates GWAS results with gene network to identify a strongly interconnected gene module enriched in high association signals. SigMod identifies the gene module by solving the optimization problem: 
+**Results:** We developed SigMod, a novel and efficient method that integrates GWAS results with gene network to identify a strongly interconnected gene module enriched in high association signals. SigMod identifies a gene module by solving the optimization problem: 
 
 * `maxmize: obj(u) = c'u + \lambda u'Au + \eta |u|,`
 
-where `u` is a vector of binary variables to be optimized. `u=1` means a gene is selected and `u=0` otherwise. `c` is a vector of gene scores, can be computed from the GWAS results using gene-based methods. `A` is the adjacency matrix of the gene network. `\lambda` and `\eta` are tuning parameters. The meaning of each term in `obj(u)` is:
+where `u` is a vector of binary variables to be optimized. `u=1` indicates a gene is selected while `u=0` otherwise. `c` is a vector of gene scores representing the confidence/scale of gene-disease association, which can be computed from the GWAS results using gene-based methods. `A` is the adjacency matrix of the gene network. `\lambda` and `\eta` are tuning parameters. The meaning of each term in `obj(u)` is:
 
-* `c'u`: the combined effect of all selected genes
+* `c'u`: the joint effect of all selected genes
 * ` u'Au`: the overall connection strength among selected genes
 * `|u|`: the number of selected genes
 
@@ -17,8 +17,8 @@ Therefore the first term `c'u` encourages high score genes to be selected; the s
 
 
 ## Usage
-Usage and examples will be added soon
+Application examples will be added soon
 
 * Author: Yuanlong LIU
-* Affiliation: French National Institute of Health and Medical Research, Unit 946,  Paris, France
-* Email: yuanlong.liu@inserm.fr
+* Affiliation: 1INSERM (French National Institute of Health and Medical Research), Genetic Variation and Human Diseases Unit, UMR-946, Paris, France
+* Feel free to contact: yuanlong.liu@inserm.fr if you meet any problem in your application
