@@ -22,6 +22,6 @@ The source code and user manual are included in the SigMod_v2.zip file. If you a
 * Author: Yuanlong LIU
 * Affiliation: INSERM (French National Institute of Health and Medical Research), Genetic Variation and Human Diseases Unit, UMR-946, Paris, France
 
-## Please cite
+## Please cite the following article if you use this method
 * Yuanlong Liu, Myriam Brossard, Damian Roqueiro, Patricia Margaritte-Jeannin, Chloé Sarnowski, Emmanuelle Bouzigon, Florence Demenais; SigMod: an exact and efficient method to identify a strongly interconnected disease-associated module in a gene network. Bioinformatics 2017 btx004. doi: 10.1093/bioinformatics/btx004
 
