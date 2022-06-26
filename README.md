@@ -6,7 +6,7 @@ SigMod is an exact and efficient method for identifying strongly interconnected 
 ![Alt text](./img/SigMod_methods.png "SigMod methods")
 
 * SigMod connects chromatin 3D organization to genomic function:
-![Alt text](./img/SigMod_features.png "SigMod features")
+![Alt text](./img/SigMod_results.png "SigMod result")
 
 
 ## Multiple new features were added in version 2.0
