@@ -2,10 +2,7 @@
 
 SigMod is an exact and efficient method for identifying strongly interconnected disease-associated modules in gene (protein) network. SigMod is currently implemented in R.
 
-* Overview of the SigMod method:
-![Alt text](./img/SigMod_methods.png "SigMod methods")
-
-* SigMod connects chromatin 3D organization to genomic function:
+* An example of asthma-associated modules identified based on STRING network and GWAS outcomes:
 ![Alt text](./img/SigMod_results.png "SigMod result")
 
 
