@@ -2,7 +2,7 @@
 	##	Two parameters: interconnectivity parameter: lambda; sparsity parameter: eta
 	##	Library dependency: igraph 1.0.0 or above http://igraph.org/r/
 	##	Last updated: 03-07-2017
-	##	Maintained by Yuanlong LIU, contact: yliueagle@gmail.com
+	##	Maintained by Yuanlong LIU, contact: yuanlong.liu@inserm.fr
 
 	SigMod_core <- function(net, lambda, eta, silent=0) 
 	{

@@ -1,13 +1,10 @@
-	##	this function converts p-values to upper quantile of normal distribution
-	##	05-01-2018
-	##	Yuanlong LIU
+	##	this function used the bisection algorithm to find the optimal module
 	
 	p2score <- function( gene_ps )
 	{
-		if( !('p' %in% colnames(gene_ps )) ) stop('The input of the p2score function should be a data frame and contain a \"p\" column')
 		gene_ps$score = qnorm( 1 - gene_ps$p ) ## convert p-values to upper quantile of normal distribution
 		
-		neg_inf_index = which( is.infinite( gene_ps$score ) & ( 0 > gene_ps$score ) ) ## p-values converted to -inf
+		neg_inf_index = which( is.infinite( gene_ps$score ) & ( 0 > gene_ps$score ) ) ##	p-values converted to -inf
 		pos_inf_index = which( is.infinite( gene_ps$score ) & ( 0 < gene_ps$score ) ) ## p-values converted to +inf
 		
 		neg_inf_index_len = length(neg_inf_index)

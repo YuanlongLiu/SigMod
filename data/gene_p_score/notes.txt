@@ -1,0 +1,5 @@
+##	gene_ps.tsv is converted from gene2weight_asthma_imputed_meta_g1_00k.Rdata
+##	gene_scores.tsv is generated using the convert_pvalues_2_scores.R function 
+##	Yuanlong LIU, 13-07-2017
+
+

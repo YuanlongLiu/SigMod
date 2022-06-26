@@ -1,24 +1,25 @@
-Package: CALDER
+Package: SigMod
 Type: Package
-Title: CALDER: a Hi-C analysis tool for inferring non-linear hierarchical organization of the 3D chromosome
-Version: 2.0
-Date: 2022-05-10
+Title: SigMod: a Hi-C non-linear hierarchical organization analysis tool
+Version: 1.0
+Date: 2020-09-01
 Author: Yuanlong LIU
 Maintainer: Who to complain to <yliueagle@googlemail.com>
-Description: CALDER is a Hi-C analysis tool that allows: (1) compute chromatin domains from whole chromosome contacts; (2) derive their non-linear hierarchical organization and obtain sub-compartments; (3) compute nested sub-domains within each chromatin domain from short-range contacts
+Description: SigMod is a Hi-C analysis tool that allows: (1) compute chromatin domains from whole chromosome contacts; (2) derive their non-linear hierarchical organization and obtain sub-compartments; (3) compute nested sub-domains within each chromatin domain from short-range contacts
 LinkingTo: Rcpp, RcppArmadillo
 Authors@R: c(
     person(given = "Yuanlong",
            family = "LIU",
            role = c("aut", "cre"),
            email = "yliueagle@googlemail.com"))
-URL: https://github.com/CSOgroup/CALDER
-BugReports: https://github.com/CSOgroup/CALDER/issues
+URL: https://github.com/YuanlongLiu/SigMod/
+BugReports: https://github.com/YuanlongLiu/SigMod/issues
 License: MIT
 Encoding: UTF-8
 Depends:
     R (>= 3.5.2)
 Imports: 
-	R.utils (>= 2.9.0),
-	igraph (>= 1.0.0)
-RoxygenNote: 7.1.2
+    R.utils (>= 2.9.0),
+    STRINGdb (>= 2.6.5),    
+    igraph (>= 1.0.0)
+RoxygenNote: 7.2.0

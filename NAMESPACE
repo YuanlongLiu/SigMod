@@ -1,3 +1,5 @@
-useDynLib(SigMod, .registration=TRUE)
 exportPattern("^[[:alpha:]]+")
-
+import(igraph)
+importFrom("stats", "qnorm")
+import(utils)
+import(STRINGdb)
