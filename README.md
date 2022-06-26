@@ -1,6 +1,6 @@
 # SigMod user manual
 
-SigMod is a Hi-C analysis tool that allows: (1) compute chromatin domains from whole chromosome contacts; (2) derive their non-linear hierarchical organization and obtain sub-compartments; (3) compute nested sub-domains within each chromatin domain from short-range contacts. SigMod is currently implemented in R.
+SigMod is an exact and efficient method for identifying strongly interconnected disease-associated modules in gene (protein) network. SigMod is currently implemented in R.
 
 * Overview of the SigMod method:
 ![Alt text](./img/SigMod_methods.png "SigMod methods")
