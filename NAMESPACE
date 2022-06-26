@@ -1,5 +1,3 @@
-useDynLib(CALDER, .registration=TRUE)
-importFrom(Rcpp, evalCpp)
-importFrom(foreach, foreach)
+useDynLib(SigMod, .registration=TRUE)
 exportPattern("^[[:alpha:]]+")
 
