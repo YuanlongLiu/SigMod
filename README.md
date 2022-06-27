@@ -6,3 +6,4 @@ An example of asthma-associated modules identified based on STRING network and G
 ![Alt text](./img/SigMod_results.png "SigMod result")
 
 
+- For description of the method and how to use the code, refer to *SigMod_manual.pdf*
